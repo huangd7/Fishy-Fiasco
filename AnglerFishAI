@@ -1,0 +1,172 @@
+using System.Collections;
+using UnityEngine;
+
+public class AnglerFishAI : MonoBehaviour
+{
+    // FSM States
+    private enum State
+    {
+        Patrol,
+        Lure,
+        Chase,
+        Attack
+    }
+
+    [Header("References")]
+    public Transform player;
+    public Rigidbody playerRigidbody;
+    public Rigidbody rb;
+    public Transform[] patrolPoints;
+    public Light lureLight;
+
+    [Header("Detection Ranges")]
+    public float lureRange = 30f;
+    public float chaseRange = 10f;
+    public float attackRange = 2f;
+
+    [Header("Movement")]
+    public float patrolSpeed = 3f;
+    public float chaseSpeed = 8f;
+    public float lurePullForce = 15f;
+
+    [Header("Attack")]
+    public int damage = 25;
+    public float attackCooldown = 1.5f;
+
+    [Header("Lure Settings")]
+    public float lureDelay = 2f;
+    public float lureFlashSpeed = 5f;
+
+    private State currentState;
+    private int currentPatrolIndex;
+    private bool canAttack = true;
+    private bool lureActive = false;
+
+    private void Start()
+    {
+        currentState = State.Patrol;
+        lureLight.enabled = false;
+    }
+
+    private void Update()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        switch (currentState)
+        {
+            case State.Patrol:
+                Patrol();
+                if (distanceToPlayer <= lureRange)
+                    StartCoroutine(EnterLureState());
+                break;
+
+            case State.Lure:
+                LurePlayer();
+                if (distanceToPlayer <= chaseRange)
+                    ChangeState(State.Chase);
+                break;
+
+            case State.Chase:
+                ChasePlayer();
+                if (distanceToPlayer <= attackRange)
+                    ChangeState(State.Attack);
+                break;
+
+            case State.Attack:
+                AttackPlayer();
+                if (distanceToPlayer > attackRange)
+                    ChangeState(State.Chase);
+                break;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (currentState == State.Patrol)
+            MoveTo(patrolPoints[currentPatrolIndex].position, patrolSpeed);
+
+        if (currentState == State.Chase)
+            MoveTo(player.position, chaseSpeed);
+    }
+
+    // ======================
+    // STATE BEHAVIORS
+    // ======================
+
+    private void Patrol()
+    {
+        if (Vector3.Distance(transform.position, patrolPoints[currentPatrolIndex].position) < 1f)
+        {
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+        }
+    }
+
+    private IEnumerator EnterLureState()
+    {
+        ChangeState(State.Lure);
+        yield return new WaitForSeconds(lureDelay);
+        lureActive = true;
+        lureLight.enabled = true;
+    }
+
+    private void LurePlayer()
+    {
+        if (!lureActive) return;
+
+        // Flash the lure light
+        lureLight.intensity = Mathf.PingPong(Time.time * lureFlashSpeed, 5f) + 1f;
+
+        // Pull player toward angler fish
+        Vector3 direction = (transform.position - player.position).normalized;
+        playerRigidbody.AddForce(direction * lurePullForce, ForceMode.Acceleration);
+    }
+
+    private void ChasePlayer()
+    {
+        // Movement handled in FixedUpdate
+    }
+
+    private void AttackPlayer()
+    {
+        if (!canAttack) return;
+
+        canAttack = false;
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+
+        if (health != null)
+            health.TakeDamage(damage);
+
+        StartCoroutine(AttackCooldown());
+    }
+
+    // ======================
+    // HELPERS
+    // ======================
+
+    private void MoveTo(Vector3 target, float speed)
+    {
+        Vector3 direction = (target - transform.position).normalized;
+        rb.velocity = direction * speed;
+        transform.forward = direction;
+    }
+
+    private void ChangeState(State newState)
+    {
+        if (currentState == newState) return;
+
+        // Exit logic
+        if (currentState == State.Lure)
+        {
+            lureLight.enabled = false;
+            lureActive = false;
+        }
+
+        currentState = newState;
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+}
