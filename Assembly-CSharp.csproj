@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Prefabs\ModularFirstPersonController\FirstPersonController\FirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\Maze Generator.cs" />
     <Compile Include="Assets\Scripts\Menu Script.cs" />
   </ItemGroup>
   <ItemGroup>
