@@ -7,6 +7,7 @@ public class MazeGenerator : MonoBehaviour
     public int width, height;
     public float wallSize = 1f;
     public bool[,] visited;
+    public Material wallMaterial;
     public List<GameObject> walls = new List<GameObject>();
 
     void Start()
@@ -60,6 +61,11 @@ public class MazeGenerator : MonoBehaviour
         GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
         wall.transform.position = position;
         wall.transform.localScale = scale;
+
+        // Apply material if assigned
+        if (wallMaterial != null)
+            wall.GetComponent<Renderer>().material = wallMaterial;
+
         walls.Add(wall);
     }
 
