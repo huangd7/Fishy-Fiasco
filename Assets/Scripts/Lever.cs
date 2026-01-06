@@ -5,19 +5,22 @@ using UnityEngine;
 public class Lever : MonoBehaviour
 {
     private static System.Random rand = new System.Random();
-
-    public GameObject Goal; 
+    public GameObject HatchWin;
+    public GameObject Goal;
+    public GameObject Hatch;
+    public int LeversFlicked;
     // Start is called before the first frame update
     void Start()
     {
-       
+         LeversFlicked = 0;
         SpawnLevers();
+        SpawnHatch();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        CheckLeverFlick();
     }
     void SpawnLevers()
     {
@@ -67,4 +70,25 @@ public class Lever : MonoBehaviour
 
         
     }
+    void CheckLeverFlick()
+    {
+        if (FlickLever == true)
+        {
+            LeversFlicked++;
+        }
+        if (LeversFlicked == 3)
+        {
+            openHatch();
+        }
+        
+    }
+    void SpawnHatch()
+    {
+        GameObject  HatchWin = Instantiate(Hatch, new Vector3(284, 6, 284), Quaternion.identity);
+    }
+    void openHatch()
+    {
+        Destroy(HatchWin);
+    }
+
 }
