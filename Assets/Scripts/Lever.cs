@@ -9,6 +9,7 @@ public class Lever : MonoBehaviour
     public GameObject Goal;
     public GameObject Hatch;
     public int LeversFlicked;
+    public bool FlickLever;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +77,7 @@ public class Lever : MonoBehaviour
         {
             LeversFlicked++;
         }
-        if (LeversFlicked == 3)
+        if (LeversFlicked >= 3)
         {
             openHatch();
         }
@@ -84,7 +85,7 @@ public class Lever : MonoBehaviour
     }
     void SpawnHatch()
     {
-        GameObject  HatchWin = Instantiate(Hatch, new Vector3(284, 6, 284), Quaternion.identity);
+         HatchWin = Instantiate(Hatch, new Vector3(285, 6, 285), Quaternion.identity);
     }
     void openHatch()
     {
