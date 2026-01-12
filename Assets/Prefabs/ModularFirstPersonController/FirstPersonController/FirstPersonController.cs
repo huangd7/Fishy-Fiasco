@@ -54,7 +54,6 @@ public class FirstPersonController : MonoBehaviour
     public float maxVelocityChange = 10f;
 
     // Internal Variables
-    private bool isWalking = false;
 
     #region Sprint
 
@@ -364,15 +363,7 @@ public class FirstPersonController : MonoBehaviour
 
             Vector3 input = new Vector3(inputX, inputY, inputZ);
 
-            // Are we moving at all?
-            if (input.sqrMagnitude > 0.001f)
-            {
-                isWalking = true;
-            }
-            else
-            {
-                isWalking = false;
-            }
+
 
             // Normalize to avoid faster diagonal movement
             if (input.sqrMagnitude > 1f)
