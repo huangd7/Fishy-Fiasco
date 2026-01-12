@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834e25a207f77e747a26d2713e2fd1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOxygen: 45
+  maxOxygen: 90
   baseDrainPerSecond: 1
   sprintMultiplier: 2
   sprintKey: 304
@@ -1846,10 +1846,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anglerfishPrefab: {fileID: 1937588542411740048, guid: a05072560c3476b4cb8dddf22f697392, type: 3}
   sharkPrefab: {fileID: 5925960515861282153, guid: 2fb93ff3c1250a74ca5f53a6bc162675, type: 3}
-  anglerfishCount: 10
-  sharkCount: 10
-  center: {x: 143, y: -7.5, z: 143}
-  spawnRadius: 120
+  fishType3Prefab: {fileID: 7770584863604633872, guid: 67de17aaa6711224f80123d9b1ef8cb7, type: 3}
+  fishType4Prefab: {fileID: 104517609856167801, guid: 94c015d94f6e5364e9b36b960bbe1b77, type: 3}
+  anglerfishCount: 15
+  sharkCount: 15
+  fishType3Count: 15
+  fishType4Count: 15
+  center: {x: 135, y: -7.5, z: 143}
+  spawnRadius: 143
+  spawnDelay: 1.5
 --- !u!4 &2132938667
 Transform:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AACAF29F-67D0-7666-969E-F69954BB66E8}</ProjectGuid>
+    <ProjectGuid>{AF4DD33C-448B-DDC2-82EA-37192B44BD58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,6 +55,7 @@
     <UnityVersion>2022.3.62f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\angler fish ai.cs" />
     <Compile Include="Assets\Scripts\ObjectiveManager.cs" />
     <Compile Include="Assets\Prefabs\Underwater-Effect\Scripts\Camera\CameraUnderwaterEffect.cs" />
+    <Compile Include="Assets\Scripts\goldfish ai.cs" />
     <Compile Include="Assets\Prefabs\Underwater-Effect\Scripts\Camera\FloatingCamera.cs" />
     <Compile Include="Assets\Prefabs\Underwater-Effect\Scripts\Miscellaneous\TagSelf.cs" />
     <Compile Include="Assets\Scripts\InteractionPrompt.cs" />

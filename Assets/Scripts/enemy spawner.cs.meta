@@ -3,7 +3,11 @@ guid: f494c63feb64a684693cb7c8bca2c66d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - anglerfishPrefab: {fileID: 1937588542411740048, guid: a05072560c3476b4cb8dddf22f697392, type: 3}
+  - sharkPrefab: {fileID: 5925960515861282153, guid: 2fb93ff3c1250a74ca5f53a6bc162675, type: 3}
+  - fishType3Prefab: {instanceID: 0}
+  - fishType4Prefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
