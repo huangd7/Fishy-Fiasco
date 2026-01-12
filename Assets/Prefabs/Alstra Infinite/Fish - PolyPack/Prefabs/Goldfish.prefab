@@ -147,5 +147,5 @@ MonoBehaviour:
   viewDistance: 30
   viewAngle: 140
   attackDistance: 2.2
-  oxygenDrainPerSecond: 28
+  oxygenDrainPerSecond: 10
   patrolRadius: 18

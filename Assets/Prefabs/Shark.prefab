@@ -128,7 +128,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.4622283
-  m_BaseOffset: 0.3
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6282337046449519113
@@ -148,7 +148,7 @@ MonoBehaviour:
   viewDistance: 30
   viewAngle: 140
   attackDistance: 3
-  oxygenDrainPerSecond: 28
+  oxygenDrainPerSecond: 50
   patrolRadius: 18
 --- !u!54 &-4354182921264427790
 Rigidbody:
